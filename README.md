@@ -1,2 +1,24 @@
-# Chromatic-dispersion-and-PMD-effects
-  This experiment studies the effects of chromatic dispersion and polarization mode dispersion (PMD) on optical signals transmitted through fiber-optic communication links. Chromatic dispersion causes different wavelengths to travel at different speeds, while PMD causes different polarization modes to travel at different speeds. 
+## Introduction
+
+
+<b>Discipline | <b>Fill your discipline name here
+:--|:--|
+<b> Lab | <b> Fill your lab name here
+<b> Experiment|     <b> Fill your experiment name and number here
+
+### About the Experiment 
+
+Fill a brief description of this experiment here
+
+<b>Name of Developer | <b> Fill the name of experiment owner here 
+:--|:--|
+<b> Institute | <b>  
+<b> Email id|     <b>  
+<b> Department |  
+
+### Contributors List
+
+SrNo | Name | Faculty or Student | Department| Institute | Email id
+:--|:--|:--|:--|:--|:--|
+1 | . | . | . | . | .
+2 | . | . | . | . | .
