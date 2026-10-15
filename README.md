@@ -1,6 +1,11 @@
 ## Introduction
+<<<<<<< HEAD
 ## Abhay Patel
 
+=======
+
+##This is your branch  
+>>>>>>> 21d6ac4 (Updated project files)
 <b>Discipline | <b>IT
 :--|:--|
 <b> Lab | <b> Fill your lab name here
