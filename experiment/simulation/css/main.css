@@ -1,1 +1,123 @@
-/* You CSS goes in here */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #061222;
+}
+
+header {
+  padding: 18px;
+  text-align: center;
+  background: #102b49;
+  border-bottom: 2px solid #00cfff;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 25px;
+}
+
+header p {
+  margin: 0;
+  color: #b8d8ef;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  min-height: 80vh;
+}
+
+.panel {
+  padding: 18px;
+  background: #0b1d32;
+  border-right: 1px solid #244666;
+}
+
+.panel h2,
+.panel h3 {
+  color: #45d9ff;
+}
+
+.panel h3 {
+  margin-top: 24px;
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #00cfff;
+}
+
+button {
+  margin: 4px 2px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 6px;
+  color: white;
+  background: #087fb5;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #00a7df;
+}
+
+button.secondary {
+  background: #314b65;
+}
+
+.results {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #102b49;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.help {
+  margin-top: 18px;
+  color: #b9d2e7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.viewer {
+  min-width: 0;
+  min-height: 520px;
+}
+
+.viewer a-scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    border-right: 0;
+    border-bottom: 1px solid #244666;
+  }
+
+  .viewer,
+  .viewer a-scene {
+    min-height: 420px;
+  }
+}
