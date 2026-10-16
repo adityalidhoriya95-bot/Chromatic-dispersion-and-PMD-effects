@@ -5,7 +5,420 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-		<!-- Your code goes here-->
+		<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Optical Fiber Virtual Lab for Chromatic Dispersion and Polarization Mode Dispersion analysis">
+
+    <title>Optical Fiber Virtual Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<
+
+<header class="header">
+
+    <div class="header-content">
+
+        <div>
+            <h1>Optical Fiber Virtual Lab</h1>
+
+            <p>
+                Chromatic Dispersion & Polarization Mode Dispersion Analysis
+            </p>
+        </div>
+
+        <div class="status" id="statusBox">
+            <span class="dot"></span>
+            <span id="statusText">Simulation Ready</span>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+<main class="container">
+
+
+    
+
+    <section class="card intro-card">
+
+        <div class="section-title">
+            <span>🔬</span>
+            <h2>Experiment</h2>
+        </div>
+
+        <p>
+            Analyze the effects of Chromatic Dispersion (CD) and
+            Polarization Mode Dispersion (PMD) on a high-speed
+            optical communication link.
+        </p>
+
+        <div class="objectives">
+
+            <div class="objective">
+                ✓ Observe pulse broadening
+            </div>
+
+            <div class="objective">
+                ✓ Calculate CD-induced delay
+            </div>
+
+            <div class="objective">
+                ✓ Calculate PMD-induced delay
+            </div>
+
+            <div class="objective">
+                ✓ Compare input and output pulses
+            </div>
+
+        </div>
+
+    </section>
+
+
+ 
+
+    <section class="card">
+
+        <div class="section-title">
+            <span>🧪</span>
+            <h2>Select Experiment</h2>
+        </div>
+
+        <div class="experiment-tabs">
+
+            <button
+                class="experiment-tab active"
+                data-experiment="1">
+                Experiment 1<br>
+                <small>Chromatic Dispersion</small>
+            </button>
+
+            <button
+                class="experiment-tab"
+                data-experiment="2">
+                Experiment 2<br>
+                <small>PMD</small>
+            </button>
+
+            <button
+                class="experiment-tab"
+                data-experiment="3">
+                Experiment 3<br>
+                <small>Combined CD + PMD</small>
+            </button>
+
+            <button
+                class="experiment-tab"
+                data-experiment="4">
+                Experiment 4<br>
+                <small>Effect of Fiber Length</small>
+            </button>
+
+        </div>
+
+        <div class="experiment-description"
+             id="experimentDescription">
+
+            <strong>Experiment 1:</strong>
+            Study chromatic-dispersion-induced pulse broadening
+            in an optical fiber.
+
+        </div>
+
+    </section>
+
+
+   
+
+    <section class="card">
+
+        <div class="section-title">
+            <span>⚙️</span>
+            <h2>Experiment Parameters</h2>
+        </div>
+
+
+        <div class="parameters">
+
+
+            <!-- DATA RATE -->
+
+            <div class="parameter">
+
+                <label for="dataRate">
+                    Data Rate (Gb/s)
+                </label>
+
+                <input
+                    type="number"
+                    id="dataRate"
+                    value="100"
+                    min="1"
+                    step="1">
+
+            </div>
+
+
+            <!-- FIBER LENGTH -->
+
+            <div class="parameter">
+
+                <label for="fiberLength">
+                    Fiber Length (km)
+                </label>
+
+                <input
+                    type="number"
+                    id="fiberLength"
+                    value="50"
+                    min="1"
+                    step="1">
+
+            </div>
+
+
+           
+
+            <div class="parameter">
+
+                <label for="wavelength">
+                    Wavelength (nm)
+                </label>
+
+                <input
+                    type="number"
+                    id="wavelength"
+                    value="1550"
+                    min="800"
+                    max="1700"
+                    step="1">
+
+            </div>
+
+
+
+            <div class="parameter">
+
+                <label for="spectralWidth">
+                    Spectral Width Δλ (nm)
+                </label>
+
+                <input
+                    type="number"
+                    id="spectralWidth"
+                    value="0.1"
+                    min="0.001"
+                    step="0.01">
+
+            </div>
+
+
+           
+
+            <div class="parameter">
+
+                <label for="dispersion">
+                    Dispersion D [ps/(nm·km)]
+                </label>
+
+                <input
+                    type="number"
+                    id="dispersion"
+                    value="17"
+                    min="0"
+                    step="0.1">
+
+            </div>
+
+
+           
+
+            <div class="parameter">
+
+                <label for="pmd">
+                    PMD Coefficient [ps/√km]
+                </label>
+
+                <input
+                    type="number"
+                    id="pmd"
+                    value="0.1"
+                    min="0"
+                    step="0.01">
+
+            </div>
+
+        </div>
+
+
+        
+
+        <div class="slider-area">
+
+            <div class="slider-header">
+
+                <label for="lengthSlider">
+                    Fiber Length Control
+                </label>
+
+                <strong>
+                    <span id="lengthValue">50</span> km
+                </strong>
+
+            </div>
+
+            <input
+                type="range"
+                id="lengthSlider"
+                min="1"
+                max="200"
+                value="50"
+                step="1">
+
+        </div>
+
+
+    
+
+        <div class="buttons">
+
+            <button
+                class="primary-btn"
+                id="startBtn">
+                ▶ Start Experiment
+            </button>
+
+            <button
+                class="secondary-btn"
+                id="resetBtn">
+                ↻ Reset
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="card">
+
+        <div class="section-title">
+            <span>📡</span>
+            <h2>High-Speed Optical Link</h2>
+        </div>
+
+
+        <div class="optical-link">
+
+
+            <!-- SOURCE -->
+
+            <div class="device">
+
+                <div class="device-icon">
+                    💻
+                </div>
+
+                <h3>Data Source</h3>
+
+                <small>
+                    Electrical Data
+                </small>
+
+            </div>
+
+
+          
+
+            <div class="fiber-container">
+
+                <div class="fiber-label">
+                    Optical Fiber
+                </div>
+
+                <div class="fiber-line">
+
+                    <div class="pulse"
+                         id="pulse">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+           
+
+            <div class="device">
+
+                <div class="device-icon">
+                    🔦
+                </div>
+
+                <h3>Laser</h3>
+
+                <small>
+                    λ = <span id="laserWavelength">
+                        1550
+                    </span> nm
+                </small>
+
+            </div>
+
+
+            
+            <div class="fiber-container">
+
+                <div class="fiber-label">
+                    Output Fiber
+                </div>
+
+                <div class="fiber-line">
+
+                    <div class="pulse pulse2"
+                         id="pulse2">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+           
+
+            <div class="device">
+
+                <div class="device-icon">
+                    📡
+                </div>
+
+                <h3>Receiver</h3>
+
+                <small>
+                    Recovered Data
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
 
 	<!-- Add JS at the bottom of HTML file --> 
         <script src="./js/main.js"></script>
