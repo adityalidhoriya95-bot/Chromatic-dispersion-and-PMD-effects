@@ -1,29 +1,25 @@
 ## Introduction
-<<<<<<< HEAD
-## Abhay Patel
 
-=======
+## Aditya Lidhoriya
 
-##This is your branch  
->>>>>>> 21d6ac4 (Updated project files)
-<b>Discipline | <b>IT
+<b>Discipline | <b>Information Technology
 :--|:--|
-<b> Lab | <b> Fill your lab name here
-<b> Experiment|     <b> Fill your experiment name and number here
+<b> Lab | <b> BCC351 Internship Assessment /Mini Project
+<b> Experiment|     <b> Chromatic Dispersion and PMD Effects
 
 ### About the Experiment 
 
-Fill a brief description of this experiment here
+This experiment studies the effects of chromatic dispersion and polarization mode dispersion (PMD) on optical signals transmitted through fiber-optic communication links.
 
-<b>Name of Developer | <b> Fill the name of experiment owner here 
+<b>Name of Developer | <b> Aditya Lidhoriya 
 :--|:--|
-<b> Institute | <b>  
-<b> Email id|     <b>  
-<b> Department |  
+<b> Institute | <b> Rajkiya Engineering College Banda
+<b> Email id|     <b> adityalidhoriya95@gmail.com
+<b> Department | <b> Information Technology
 
 ### Contributors List
 
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
-1 | . | . | . | . | .
+1 | Aditya Lidhoriya | Student | Information Technology | Rajkiya Engineering College Banda | adityalidhoriya95@gmail.com
 2 | . | . | . | . | .
