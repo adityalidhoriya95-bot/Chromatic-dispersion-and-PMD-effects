@@ -1,142 +1,296 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VR Optical Fiber Lab</title>
 
-  <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
-  <link rel="stylesheet" href="./css/main.css">
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebXR Optical Physics Lab - Chromatic & PMD Analysis</title>
+
+    <!-- Tailwind CSS CDN -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+        <link rel="stylesheet" href="css/main.css">
+
+
+
+    <!-- Import Map for Three.js & WebXR Modules -->
+
+    <script type="importmap">
+
+        {
+
+            "imports": {
+
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+
+            }
+
+        }
+
+    </script>
+
 </head>
 
 <body>
-  <header>
-    <h1>VR Optical Fiber Laboratory</h1>
-    <p>Chromatic Dispersion and Polarization Mode Dispersion</p>
-  </header>
 
-  <main class="layout">
-    <aside class="panel">
-      <h2>Experiment Controls</h2>
 
-      <label for="length">
-        Fiber Length: <span id="lengthValue">50 km</span>
-      </label>
-      <input id="length" type="range" min="10" max="100"
-             step="5" value="50">
 
-      <label for="rate">
-        Data Rate: <span id="rateValue">100 Gb/s</span>
-      </label>
-      <input id="rate" type="range" min="10" max="200"
-             step="10" value="100">
+    <!-- 3D WebGL Canvas Viewport -->
 
-      <h3>Simulation</h3>
-      <button id="pauseBtn">Pause Pulse</button>
-      <button id="resetBtn" class="secondary">Reset</button>
+    <div id="viewport-container"></div>
 
-      <h3>Camera Controls</h3>
-      <button id="zoomIn">Zoom In +</button>
-      <button id="zoomOut">Zoom Out −</button>
-      <button id="rotateLeft" class="secondary">Rotate Left</button>
-      <button id="rotateRight" class="secondary">Rotate Right</button>
 
-      <h3>Results</h3>
-      <button id="resultsBtn">Calculate Results</button>
-      <button id="vrBtn">Enter VR Mode</button>
 
-      <div id="results" class="results">
-        Loading simulation results...
-      </div>
+    <!-- VR Split Screen Divider for Stereoscopic Fallback Mode -->
 
-      <p class="help">
-        Drag the mouse to look around. Use WASD to move.
-        VR requires a compatible headset and browser.
-      </p>
-    </aside>
+    <div id="vr-split-divider" class="vr-split-line hidden"></div>
 
-    <section class="viewer">
-      <a-scene
-        id="labScene"
-        embedded
-        background="color: #061222"
-        vr-mode-ui="enabled: true"
-        renderer="antialias: true">
 
-        <a-entity light="type: ambient; intensity: 1.5"></a-entity>
-        <a-entity light="type: directional; intensity: 2"
-                  position="-3 6 4"></a-entity>
 
-        <a-plane position="0 -0.5 -5"
-                 rotation="-90 0 0"
-                 width="16" height="12"
-                 color="#142b43"></a-plane>
+    <!-- User Interface Overlay -->
 
-        <!-- Optical fiber -->
-        <a-cylinder id="fiber"
-                    position="0 1 -5"
-                    rotation="0 0 90"
-                    height="6" radius="0.13"
-                    color="#32cfff"
-                    material="transparent: true; opacity: 0.5">
-        </a-cylinder>
+    <div id="ui-overlay" class="w-full h-screen flex flex-col justify-between">
 
-        <a-cylinder position="0 1 -5"
-                    rotation="0 0 90"
-                    height="6" radius="0.045"
-                    color="#ffffff"
-                    material="emissive: #00cfff; emissiveIntensity: 2">
-        </a-cylinder>
+        <div class="flex h-full">
 
-        <!-- Laser and receiver -->
-        <a-box position="-3.8 1 -5"
-               width="0.7" height="0.8" depth="0.8"
-               color="#176bff"></a-box>
 
-        <a-box position="3.8 1 -5"
-               width="0.7" height="0.8" depth="0.8"
-               color="#16b886"></a-box>
 
-        <!-- Animated optical pulse -->
-        <a-sphere id="pulse" position="-3 1 -5"
-                  radius="0.18" color="#ffffff"
-                  material="emissive: #00cfff; emissiveIntensity: 2">
-        </a-sphere>
+            <!-- LEFT CONTROL SIDEBAR -->
 
-        <!-- Second pulse represents a different polarization mode -->
-        <a-sphere id="pmdPulse" position="-3 1.25 -5"
-                  radius="0.12" color="#ffb84d"
-                  material="emissive: #ff8800; emissiveIntensity: 2">
-        </a-sphere>
+            <aside class="sidebar-container w-80 h-full p-4 flex flex-col justify-between interactive overflow-y-auto">
 
-        <a-text value="LASER SOURCE" position="-4.1 2 -5"
-                align="center" color="#ffffff" width="4"></a-text>
+                <div class="space-y-4">
 
-        <a-text value="OPTICAL FIBER" position="0 1.65 -5"
-                align="center" color="#70eaff" width="4"></a-text>
 
-        <a-text value="RECEIVER" position="4.1 2 -5"
-                align="center" color="#ffffff" width="4"></a-text>
 
-        <a-text value="VR OPTICAL LAB" position="0 3 -5"
-                align="center" color="#45d9ff" width="6"></a-text>
+                    <!-- Title Header -->
 
-        <a-sky color="#061222"></a-sky>
+                    <div class="border-b border-slate-700/80 pb-2">
 
-        <a-entity id="cameraRig">
-          <a-camera id="camera"
-                    position="0 2 4"
-                    look-controls
-                    wasd-controls
-                    camera="fov: 60">
-          </a-camera>
-        </a-entity>
+                        <h1 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
 
-      </a-scene>
-    </section>
-  </main>
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
 
-  <script src="js/vr-lab.js"></script>
+                            VR Optical Physics Lab
+
+                        </h1>
+
+                        <p class="text-[11px] text-slate-400">Chromatic Dispersion & PMD Analysis</p>
+
+                    </div>
+
+
+
+                    <!-- Experiment Parameters -->
+
+                    <div>
+
+                        <h2 class="text-xs uppercase font-bold text-cyan-400 mb-2 tracking-wider">EXPERIMENT PARAMETERS</h2>
+
+
+
+                        <!-- Fiber Length Slider (1-100 km) -->
+
+                        <div class="mb-3">
+
+                            <div class="flex justify-between text-xs font-semibold mb-1 text-slate-200">
+
+                                <span id="label-length">Fiber Length: 50 km</span>
+
+                            </div>
+
+                            <input type="range" id="slider-length" min="1" max="100" value="50" step="1" class="w-full">
+
+                        </div>
+
+
+
+                        <!-- Data Rate Slider (1-40 Gb/s) -->
+
+                        <div class="mb-3">
+
+                            <div class="flex justify-between text-xs font-semibold mb-1 text-slate-200">
+
+                                <span id="label-datarate">Data Rate: 10 Gb/s</span>
+
+                            </div>
+
+                            <input type="range" id="slider-datarate" min="1" max="40" value="10" step="1" class="w-full">
+
+                        </div>
+
+
+
+                        <!-- Laser Wavelength Slider (1310-1620 nm) -->
+
+                        <div class="mb-3">
+
+                            <div class="flex justify-between text-xs font-semibold mb-1 text-slate-200">
+
+                                <span id="label-wavelength">Wavelength: 1550 nm</span>
+
+                            </div>
+
+                            <input type="range" id="slider-wavelength" min="1310" max="1620" value="1550" step="1" class="w-full">
+
+                        </div>
+
+
+
+                        <!-- Polarization Angle Slider (0-90 deg) -->
+
+                        <div class="mb-2">
+
+                            <div class="flex justify-between text-xs font-semibold mb-1 text-slate-200">
+
+                                <span id="label-polangle">Polarization Angle: 45°</span>
+
+                            </div>
+
+                            <input type="range" id="slider-polangle" min="0" max="90" value="45" step="1" class="w-full">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Simulation Controls -->
+
+                    <div>
+
+                        <h2 class="text-xs uppercase font-bold text-cyan-400 mb-2 tracking-wider">SIMULATION</h2>
+
+                        <div class="flex gap-2">
+
+                            <button id="btn-pause" class="btn-ui flex-1">Pause Pulse</button>
+
+                            <button id="btn-reset" class="btn-ui btn-dark">Reset Lab</button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Camera Controls -->
+
+                    <div>
+
+                        <h2 class="text-xs uppercase font-bold text-cyan-400 mb-2 tracking-wider">CAMERA CONTROLS</h2>
+
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+
+                            <button id="btn-zoom-in" class="btn-ui">Zoom In +</button>
+
+                            <button id="btn-zoom-out" class="btn-ui">Zoom Out -</button>
+
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+
+                            <button id="btn-rot-left" class="btn-ui">Rotate Left</button>
+
+                            <button id="btn-rot-right" class="btn-ui">Rotate Right</button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Results Analysis & VR Buttons -->
+
+                    <div>
+
+                        <h2 class="text-xs uppercase font-bold text-cyan-400 mb-2 tracking-wider">RESULTS ANALYSIS</h2>
+
+                        <button id="btn-calc" class="btn-ui w-full mb-2 bg-sky-600 hover:bg-sky-500 font-bold py-1.5">Calculate Results</button>
+
+                        <button id="btn-vr" class="btn-ui w-full bg-cyan-600 hover:bg-cyan-500 mb-2.5 flex items-center justify-center gap-1.5 py-2 font-bold">
+
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+
+                            <span>Enter WebXR VR Mode</span>
+
+                        </button>
+
+
+
+                        <!-- Numerical Analysis Readout Panel -->
+
+                        <div id="results-panel" class="bg-slate-950/90 border border-slate-800 rounded p-3 text-xs space-y-1 font-mono shadow-inner">
+
+                            <p class="text-slate-400">Loading physics results...</p>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!-- Footer Interaction Instructions -->
+
+                <div class="text-[10px] text-slate-400 leading-tight pt-2 border-t border-slate-800 mt-2">
+
+                    <span class="text-cyan-400 font-bold">VR Interaction:</span> Squeeze controller Grip trigger to grab and move instruments. On desktop, click & drag instruments with mouse.
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- TOP BANNER OVERLAY -->
+
+            <main class="flex-1 p-4 flex flex-col items-center justify-start pointer-events-none">
+
+                <div class="bg-slate-900/80 backdrop-blur-md px-6 py-2 rounded-full border border-cyan-500/30 text-center shadow-lg">
+
+                    <h1 class="text-xl font-bold tracking-wider text-cyan-300 drop-shadow-[0_2px_8px_rgba(0,210,255,0.5)]">
+
+                        VIRTUAL OPTICAL DISPERSION LABORATORY
+
+                    </h1>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Notification Toast -->
+
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none bg-slate-900/95 border border-cyan-500 text-cyan-200 px-4 py-3 rounded-lg shadow-xl text-xs max-w-sm flex items-center gap-3">
+
+        <svg class="w-5 h-5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+
+        <span id="toast-msg">WebXR Physics Lab Ready</span>
+
+    </div>
+
+
+
+    <!-- MAIN 3D SIMULATION ENGINE -->
+
+        <script type="module" src="js/main.js"></script>
+
 </body>
+
 </html>
+
