@@ -1,8 +1,13 @@
 ## Introduction
 
+<<<<<<< HEAD
 ## Aditya Lidhoriya
 
 <b>Discipline | <b>Information Technology
+=======
+##This is your branch  
+<b>Discipline | <b>IT
+>>>>>>> origin/dev
 :--|:--|
 <b> Lab | <b> BCC351 Internship Assessment /Mini Project
 <b> Experiment|     <b> Chromatic Dispersion and PMD Effects
