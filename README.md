@@ -1,5 +1,5 @@
 ## Introduction
-## Abhay Patel
+## Aditya Lidhoriya
 
 <b>Discipline | <b>IT
 :--|:--|
