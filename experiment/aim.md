@@ -1,1 +1,1 @@
-### Aim of the experiment
+### To study the effects of chromatic dispersion and polarization mode dispersion (PMD) on pulse propagation in a single-mode optical fiber, and to see how fiber length and data rate limit the performance of a communication link.

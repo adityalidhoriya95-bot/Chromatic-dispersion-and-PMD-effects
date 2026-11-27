@@ -2,37 +2,88 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Which unit is used for the chromatic dispersion parameter?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "ps/km",
+        "b": "ps/(nm·km)",
+        "c": "nm/ps",
+        "d": "dB/km"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect.",
+        "b": "Correct. D is given in picoseconds per nanometre of spectral width per kilometre of fiber.",
+        "c": "Incorrect.",
+        "d": "Incorrect. This is the unit of attenuation."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What does dispersion do to a light pulse in a fiber?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Makes it narrower",
+        "b": "Increases its amplitude",
+        "c": "Broadens it in time",
+        "d": "Changes its colour permanently"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect.",
+        "b": "Incorrect.",
+        "c": "Correct. The pulse spreads out in time as it travels.",
+        "d": "Incorrect."
       },
       "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "PMD is caused by:",
+      "answers": {
+        "a": "Different wavelengths travelling at different speeds",
+        "b": "Two polarization modes travelling at different speeds",
+        "c": "Absorption in the glass",
+        "d": "Bending loss only"
+      },
+      "explanations": {
+        "a": "Incorrect. This describes chromatic dispersion.",
+        "b": "Correct. Fiber birefringence makes the two orthogonal modes travel at different speeds.",
+        "c": "Incorrect.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the approximate dispersion of standard single-mode fiber at 1550 nm?",
+      "answers": {
+        "a": "0 ps/(nm·km)",
+        "b": "1.7 ps/(nm·km)",
+        "c": "17 ps/(nm·km)",
+        "d": "170 ps/(nm·km)"
+      },
+      "explanations": {
+        "a": "Incorrect. Zero dispersion is near 1310 nm.",
+        "b": "Incorrect.",
+        "c": "Correct.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Pulse broadening from chromatic dispersion increases with:",
+      "answers": {
+        "a": "Fiber length",
+        "b": "Fiber colour",
+        "c": "Receiver size",
+        "d": "None of these"
+      },
+      "explanations": {
+        "a": "Correct. Δτ = D × L × Δλ, so it grows with length.",
+        "b": "Incorrect.",
+        "c": "Incorrect.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
   ]

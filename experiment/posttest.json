@@ -2,38 +2,89 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "For D = 17 ps/(nm·km), L = 50 km and Δλ = 0.1 nm, what is the chromatic dispersion broadening?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "8.5 ps",
+        "b": "85 ps",
+        "c": "850 ps",
+        "d": "8500 ps"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect.",
+        "b": "Correct. 17 × 50 × 0.1 = 85 ps.",
+        "c": "Incorrect.",
+        "d": "Incorrect."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "PMD-induced broadening grows with fiber length L as:",
+      "answers": {
+        "a": "L",
+        "b": "L squared",
+        "c": "√L",
+        "d": "1/L"
+      },
+      "explanations": {
+        "a": "Incorrect. This is how chromatic dispersion grows.",
+        "b": "Incorrect.",
+        "c": "Correct. PMD is random, so it grows with the square root of length.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the bit period at a data rate of 100 Gb/s?",
+      "answers": {
+        "a": "1 ps",
+        "b": "10 ps",
+        "c": "100 ps",
+        "d": "1 ns"
+      },
+      "explanations": {
+        "a": "Incorrect.",
+        "b": "Correct. T = 1/B = 1/(100 × 10^9) s = 10 ps.",
+        "c": "Incorrect.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Standard single-mode fiber has approximately zero chromatic dispersion near:",
+      "answers": {
+        "a": "850 nm",
+        "b": "1310 nm",
+        "c": "1550 nm",
+        "d": "1625 nm"
+      },
+      "explanations": {
+        "a": "Incorrect.",
+        "b": "Correct.",
+        "c": "Incorrect. Dispersion is about 17 ps/(nm·km) here.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What happens to dispersion tolerance when the data rate is increased?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "It increases",
+        "b": "It stays the same",
+        "c": "It decreases",
+        "d": "It becomes infinite"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect.",
+        "b": "Incorrect.",
+        "c": "Correct. The bit period gets shorter, so less pulse spreading can be tolerated.",
+        "d": "Incorrect."
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
     }
   ]
 }
