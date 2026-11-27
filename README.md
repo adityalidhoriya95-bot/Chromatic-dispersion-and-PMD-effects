@@ -1,24 +1,24 @@
 ## Introduction
 ## Aditya Lidhoriya
 
-<b>Discipline | <b>IT
+<b>Discipline | <b>Information Technology
 :--|:--|
-<b> Lab | <b> Fill your lab name here
-<b> Experiment|     <b> Fill your experiment name and number here
+<b> Lab | <b> Mini Project(BCC 351)
+<b> Experiment|     <b> Analysis of Chromatic and Polarization Mode Dispersion (PMD) in High-Speed Links
 
 ### About the Experiment 
 
-Fill a brief description of this experiment here
+This experiment focuses on analyzing Chromatic Dispersion and Polarization Mode Dispersion (PMD) in high-speed optical fiber communication links. It demonstrates how different wavelengths and polarization modes travel at different speeds through an optical fiber, causing pulse broadening and signal distortion. The experiment helps understand the effects of dispersion on data transmission, study its impact on signal quality and transmission distance, and explore methods to minimize dispersion for reliable, high-speed optical communication.
 
-<b>Name of Developer | <b> Fill the name of experiment owner here 
+<b>Name of Developer | <b> Aditya Lidhoriya
 :--|:--|
-<b> Institute | <b>  
-<b> Email id|     <b>  
-<b> Department |  
+<b> Institute | <b>  Rajkiya Engineering college,Banda
+<b> Email id|     <b>  adityalidhoriya95@gmail.com
+<b> Department |  Information Technology
 
 ### Contributors List
 
 SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
-1 | . | . | . | . | .
-2 | . | . | . | . | .
+1 | Aditya Lidhoriya | Student | Information Technology | Rajkiya Engineering College,Banda | adityalidhoriya95@gmail.com
+2 | Dr Ashutosh Tiwari | Faculty | Information Technology |  Rajkiya Engineering College,Banda | .
