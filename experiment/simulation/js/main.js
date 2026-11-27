@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
         import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 
-        // --- Global State ---
+       
 
         const state = {
 
@@ -36,13 +36,13 @@ import * as THREE from 'three';
 
         let roomGroup, breadboardMesh;
 
-        let labInstruments = []; // Grabbable 3D instruments list
+        let labInstruments = []; 
 
-        let patchCords = [];      // Connecting fiber cables
+        let patchCords = [];      
 
         let pulseGroup;
 
-        // Active Screens & Canvas Textures
+       
 
         let funcGenCtx, funcGenTexture;
 
@@ -52,7 +52,6 @@ import * as THREE from 'three';
 
         let compCtx, compTexture;
 
-        // WebXR Controllers
 
         let controller1, controller2;
 
@@ -74,7 +73,7 @@ import * as THREE from 'three';
 
             const container = document.getElementById('viewport-container');
 
-            // 1. Scene Setup
+           
 
             scene = new THREE.Scene();
 
@@ -82,13 +81,12 @@ import * as THREE from 'three';
 
             scene.fog = new THREE.FogExp2(0x070d19, 0.025);
 
-            // 2. Camera Setup
+            
 
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 
             camera.position.set(0, 1.7, 2.5);
 
-            // 3. WebGL Renderer & WebXR Configuration
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 
@@ -104,7 +102,6 @@ import * as THREE from 'three';
 
             container.appendChild(renderer.domElement);
 
-            // WebXR Button Integration
 
             document.body.appendChild(VRButton.createButton(renderer));
 
@@ -112,7 +109,6 @@ import * as THREE from 'three';
 
             if (nativeVRBtn) nativeVRBtn.style.display = 'none';
 
-            // 4. Orbit Controls (Desktop mouse camera)
 
             controls = new OrbitControls(camera, renderer.domElement);
 
@@ -124,7 +120,6 @@ import * as THREE from 'three';
 
             controls.maxPolarAngle = Math.PI / 2 + 0.05;
 
-            // 5. Realistic Laboratory Lighting Setup
 
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
 
@@ -148,19 +143,15 @@ import * as THREE from 'three';
 
             scene.add(benchLight);
 
-            // 6. Build Realistic Lab Room & Metallic Optical Breadboard
 
             buildLabEnvironment();
 
-            // 7. Build 8 Precise Optical Instruments matching diagram layout
 
             build8LaboratoryInstruments();
 
-            // 8. Connect Instruments with Optical Patch Cords
 
             createPatchCords();
 
-            // 9. Light Pulse Propagation Group
 
             pulseGroup = new THREE.Group();
 
@@ -168,27 +159,22 @@ import * as THREE from 'three';
 
             resetLightPulses();
 
-            // 10. WebXR VR Controllers & Interaction Setup
 
             setupWebXRControllers();
 
-            // 11. Desktop Mouse Grab Interaction
 
             setupDesktopMouseGrab();
 
-            // 12. Bind UI Events & Resize Handlers
 
             bindUIEvents();
 
             window.addEventListener('resize', onWindowResize);
 
-            // Run Initial Physics Calculation
 
             calculatePhysicsResults();
 
         }
 
-        // --- 1. Laboratory Environment & Metallic Breadboard Table ---
 
         function buildLabEnvironment() {
 
@@ -196,7 +182,6 @@ import * as THREE from 'three';
 
             scene.add(roomGroup);
 
-            // Tiled Flooring
 
             const floorGeo = new THREE.PlaneGeometry(12, 12);
 
@@ -210,7 +195,6 @@ import * as THREE from 'three';
 
             roomGroup.add(floor);
 
-            // Walls
 
             const wallMat = new THREE.MeshStandardMaterial({ color: 0x0b1329, roughness: 0.9 });
 
@@ -220,7 +204,6 @@ import * as THREE from 'three';
 
             roomGroup.add(backWall);
 
-            // Wall Reference Charts (Matching Image Posters)
 
             createPoster("Optical Communication System", "Tx (Laser) -> Modulator -> Fiber -> Rx (Photodetector)", -2.8, 3.5, -3.95);
 
@@ -228,7 +211,6 @@ import * as THREE from 'three';
 
             createPoster("Polarization Mode Dispersion (PMD)", "Pulse spreading due to orthogonal PMD axes", 2.8, 3.5, -3.95);
 
-            // Heavy Worktable Base
 
             const tableBaseGeo = new THREE.BoxGeometry(4.2, 0.85, 1.4);
 
@@ -240,7 +222,7 @@ import * as THREE from 'three';
 
             roomGroup.add(tableBase);
 
-            // METALLIC OPTICAL BREADBOARD (Dark anodized aluminum with matrix grid hole pattern)
+
 
             const bbGeo = new THREE.BoxGeometry(4.0, 0.08, 1.2);
 
@@ -256,7 +238,7 @@ import * as THREE from 'three';
 
             roomGroup.add(breadboardMesh);
 
-            // Add Breadboard Threaded Hole Texture Details
+
 
             const canvas = document.createElement('canvas');
 
@@ -338,13 +320,11 @@ import * as THREE from 'three';
 
         }
 
-        // --- 2. Build 8 Precise Optical Instruments (Matching Laboratory Diagram) ---
 
         function build8LaboratoryInstruments() {
 
             labInstruments = [];
 
-            // 1. DFB LASER SOURCE (Stacked Bottom Left - Dark Chassis with Blue LCD Display)
 
             const laserGroup = createInstrumentGroup("Laser Source (DFB)", -1.5, 0.98, -0.5, 0.45, 0.14, 0.4, 0x1e293b);
 
@@ -362,7 +342,6 @@ import * as THREE from 'three';
 
             laserGroup.add(laserScreen);
 
-            // 2. FUNCTION / PULSE GENERATOR (Stacked Top Left - Silver/Grey Chassis with Live Pulse Screen)
 
             const funcGenGroup = createInstrumentGroup("Function Generator", -1.5, 1.15, -0.5, 0.45, 0.18, 0.38, 0xd1d5db);
 
@@ -380,13 +359,11 @@ import * as THREE from 'three';
 
             funcGenGroup.add(funcGenScreen);
 
-            // 3. OPTICAL MODULATOR (MZM - Black Anodized Aluminium Box on Post)
 
             const mzmGroup = createInstrumentGroup("Optical Modulator (MZM)", -0.9, 0.98, -0.5, 0.22, 0.12, 0.22, 0x0f172a);
 
             addGoldBNCConnectors(mzmGroup);
 
-            // 4. SINGLE MODE FIBER SPOOL (Bright Yellow Fiber Coil Mounted on Black Metal Flanges)
 
             const spoolGroup = new THREE.Group();
 
@@ -418,7 +395,6 @@ import * as THREE from 'three';
 
             makeInstrumentGrabbable(spoolGroup, "Single Mode Fiber Spool");
 
-            // 5. POLARIZATION CONTROLLER (Dual Black Block with 3 Rotatable Paddles)
 
             const polGroup = createInstrumentGroup("Polarization Controller", 0.2, 0.98, -0.5, 0.32, 0.09, 0.16, 0x1e293b);
 
@@ -440,11 +416,9 @@ import * as THREE from 'three';
 
             }
 
-            // 6. PHOTODETECTOR (Optical-to-Electrical Converter Module)
 
             const pdGroup = createInstrumentGroup("Photodetector", 0.7, 0.98, -0.5, 0.16, 0.11, 0.16, 0x0f172a);
 
-            // 7. DIGITAL STORAGE OSCILLOSCOPE (Grey Mainframe with Active Dynamic Eye Diagram LCD)
 
             const scopeGroup = createInstrumentGroup("Oscilloscope", 1.15, 1.12, -0.5, 0.48, 0.32, 0.32, 0xe2e8f0);
 
@@ -462,7 +436,6 @@ import * as THREE from 'three';
 
             scopeGroup.add(scopeScreen);
 
-            // 8. COMPUTER (Analysis & Data Processing Monitor + Keyboard + Mouse)
 
             const compGroup = createInstrumentGroup("Computer Monitor", 1.65, 1.18, -0.4, 0.48, 0.36, 0.08, 0x0f172a);
 
@@ -480,7 +453,6 @@ import * as THREE from 'three';
 
             compGroup.add(compScreen);
 
-            // Keyboard & Mouse Accessories
 
             const kbMesh = new THREE.Mesh(
 
@@ -560,7 +532,6 @@ import * as THREE from 'three';
 
         }
 
-        // --- 3. Optical Patch Cords ---
 
         function createPatchCords() {
 
@@ -618,7 +589,7 @@ import * as THREE from 'three';
 
         }
 
-        // --- 4. Light Pulse Waves ---
+       
 
         function resetLightPulses() {
 
@@ -662,7 +633,7 @@ import * as THREE from 'three';
 
         }
 
-        // --- 5. WebXR Controllers Setup ---
+        
 
         function setupWebXRControllers() {
 
@@ -708,7 +679,6 @@ import * as THREE from 'three';
 
             scene.add(controllerGrip2);
 
-            // Laser Beam for Controller Pointer
 
             const laserGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -3)]);
 
@@ -776,7 +746,6 @@ import * as THREE from 'three';
 
         }
 
-        // --- 6. Desktop Mouse Drag Fallback ---
 
         function setupDesktopMouseGrab() {
 
@@ -852,7 +821,6 @@ import * as THREE from 'three';
 
         }
 
-        // --- 7. Physics Calculation Engine ---
 
         function calculatePhysicsResults() {
 
@@ -864,13 +832,11 @@ import * as THREE from 'three';
 
             const phi = state.polAngle;          // deg
 
-            // Chromatic dispersion parameter D(λ)
 
             const D = 0.05 * (lambda - 1310);
 
             state.dispersionD = D;
 
-            // Broadening calculations
 
             const cdBroadening = Math.abs(D) * L * state.laserLinewidth; // ps
 
@@ -904,7 +870,6 @@ import * as THREE from 'three';
 
             `;
 
-            // Dynamic Fiber Spool Scale Update
 
             const spoolGroup = labInstruments.find(i => i.name === "Single Mode Fiber Spool");
 
@@ -922,7 +887,6 @@ import * as THREE from 'three';
 
             }
 
-            // Update Dynamic Instrument LCD Displays
 
             updateLaserLCD();
 
@@ -936,7 +900,6 @@ import * as THREE from 'three';
 
         }
 
-        // Live DFB Laser LCD Display
 
         function updateLaserLCD() {
 
@@ -954,7 +917,6 @@ import * as THREE from 'three';
 
         }
 
-        // Live Function Generator LCD Display
 
         function updateFunctionGenScreen() {
 
@@ -986,7 +948,6 @@ import * as THREE from 'three';
 
         }
 
-        // Live Oscilloscope Eye Diagram Screen
 
         function updateOscilloscopeScreen(broadening, bitPeriod) {
 
@@ -994,7 +955,6 @@ import * as THREE from 'three';
 
             scopeCtx.fillStyle = '#021814'; scopeCtx.fillRect(0, 0, 256, 256);
 
-            // Oscilloscope Grid
 
             scopeCtx.strokeStyle = '#054433'; scopeCtx.lineWidth = 1;
 
@@ -1006,7 +966,6 @@ import * as THREE from 'three';
 
             }
 
-            // Draw Dynamic Eye Opening Waveform
 
             scopeCtx.strokeStyle = '#facc15'; scopeCtx.lineWidth = 2;
 
@@ -1036,7 +995,6 @@ import * as THREE from 'three';
 
         }
 
-        // Live Computer Dual Analysis Display
 
         function updateComputerScreen(D, L, pmdDGD) {
 
@@ -1044,7 +1002,6 @@ import * as THREE from 'three';
 
             compCtx.fillStyle = '#0f172a'; compCtx.fillRect(0, 0, 512, 256);
 
-            // Left Plot: Chromatic Dispersion
 
             compCtx.fillStyle = '#38bdf8'; compCtx.font = 'bold 16px Segoe UI';
 
@@ -1072,7 +1029,6 @@ import * as THREE from 'three';
 
             compCtx.stroke();
 
-            // Right Plot: PMD Analysis
 
             compCtx.fillStyle = '#38bdf8';
 
@@ -1106,7 +1062,6 @@ import * as THREE from 'three';
 
         }
 
-        // --- 8. WebXR & Fallback VR Modes ---
 
         function toggleVRMode() {
 
@@ -1184,7 +1139,6 @@ import * as THREE from 'three';
 
         }
 
-        // --- 9. UI Binding & Animation Loop ---
 
         function bindUIEvents() {
 
@@ -1322,7 +1276,6 @@ import * as THREE from 'three';
 
                 renderer.setScissorTest(true);
 
-                // Left Eye
 
                 renderer.setScissor(0, 0, halfW, h);
 
@@ -1336,7 +1289,6 @@ import * as THREE from 'three';
 
                 renderer.render(scene, camera);
 
-                // Right Eye
 
                 renderer.setScissor(halfW, 0, halfW, h);
 

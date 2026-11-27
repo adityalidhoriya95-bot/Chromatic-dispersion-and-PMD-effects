@@ -18,7 +18,7 @@ body {
 
 
 
-        /* Sidebar Styling matching image design */
+        
 
         .sidebar-container {
 
@@ -34,7 +34,7 @@ body {
 
 
 
-        /* Range Slider Styling */
+       
 
         input[type=range] {
 
@@ -68,7 +68,6 @@ body {
 
 
 
-        /* Styled Buttons */
 
         .btn-ui {
 
@@ -189,7 +188,6 @@ body {
         }
 
 
-/* --- Layout safety fixes: keep the 3D scene behind the interface --- */
 * { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
 body { background: #070d19 !important; color: #dbeafe; }

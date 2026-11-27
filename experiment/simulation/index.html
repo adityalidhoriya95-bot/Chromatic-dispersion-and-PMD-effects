@@ -3,7 +3,7 @@
 =======
 <html>
 <head>
-	<!-- Add CSS at the head of HTML file -->
+	
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -159,7 +159,7 @@
         <div class="parameters">
 
 
-            <!-- DATA RATE -->
+           
 
             <div class="parameter">
 
@@ -177,7 +177,7 @@
             </div>
 
 
-            <!-- FIBER LENGTH -->
+          
 
             <div class="parameter">
 
@@ -329,7 +329,7 @@
         <div class="optical-link">
 
 
-            <!-- SOURCE -->
+           
 
             <div class="device">
 
@@ -433,7 +433,7 @@
 
     <title>WebXR Optical Physics Lab - Chromatic & PMD Analysis</title>
 
-    <!-- Tailwind CSS CDN -->
+    
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -441,7 +441,7 @@
 
 
 
-    <!-- Import Map for Three.js & WebXR Modules -->
+   
 
     <script type="importmap">
 
@@ -465,19 +465,19 @@
 
 
 
-    <!-- 3D WebGL Canvas Viewport -->
+    
 
     <div id="viewport-container"></div>
 
 
 
-    <!-- VR Split Screen Divider for Stereoscopic Fallback Mode -->
+    
 
     <div id="vr-split-divider" class="vr-split-line hidden"></div>
 
 
 
-    <!-- User Interface Overlay -->
+   
 
     <div id="ui-overlay" class="w-full h-screen flex flex-col justify-between">
 
@@ -485,7 +485,7 @@
 
 
 
-            <!-- LEFT CONTROL SIDEBAR -->
+           
 
             <aside class="sidebar-container w-80 h-full p-4 flex flex-col justify-between interactive overflow-y-auto">
 
@@ -493,7 +493,7 @@
 
 
 
-                    <!-- Title Header -->
+                   
 
                     <div class="border-b border-slate-700/80 pb-2">
 
@@ -511,15 +511,12 @@
 
 
 
-                    <!-- Experiment Parameters -->
-
                     <div>
 
                         <h2 class="text-xs uppercase font-bold text-cyan-400 mb-2 tracking-wider">EXPERIMENT PARAMETERS</h2>
 
 
 
-                        <!-- Fiber Length Slider (1-100 km) -->
 
                         <div class="mb-3">
 
@@ -535,7 +532,8 @@
 
 
 
-                        <!-- Data Rate Slider (1-40 Gb/s) -->
+
+                    
 
                         <div class="mb-3">
 
@@ -551,7 +549,7 @@
 
 
 
-                        <!-- Laser Wavelength Slider (1310-1620 nm) -->
+
 
                         <div class="mb-3">
 
@@ -567,7 +565,6 @@
 
 
 
-                        <!-- Polarization Angle Slider (0-90 deg) -->
 
                         <div class="mb-2">
 
@@ -585,7 +582,6 @@
 
 
 
-                    <!-- Simulation Controls -->
 
                     <div>
 
@@ -603,7 +599,6 @@
 
 
 
-                    <!-- Camera Controls -->
 
                     <div>
 
@@ -629,7 +624,7 @@
 
 
 
-                    <!-- Results Analysis & VR Buttons -->
+                 
 
                     <div>
 
@@ -647,7 +642,7 @@
 
 
 
-                        <!-- Numerical Analysis Readout Panel -->
+                        
 
                         <div id="results-panel" class="bg-slate-950/90 border border-slate-800 rounded p-3 text-xs space-y-1 font-mono shadow-inner">
 
@@ -663,7 +658,7 @@
 
 
 
-                <!-- Footer Interaction Instructions -->
+               
 
                 <div class="text-[10px] text-slate-400 leading-tight pt-2 border-t border-slate-800 mt-2">
 
@@ -675,7 +670,7 @@
 
 
 
-            <!-- TOP BANNER OVERLAY -->
+        
 
             <main class="flex-1 p-4 flex flex-col items-center justify-start pointer-events-none">
 
@@ -697,7 +692,6 @@
 
 
 
-    <!-- Notification Toast -->
 
     <div id="toast" class="fixed top-5 right-5 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none bg-slate-900/95 border border-cyan-500 text-cyan-200 px-4 py-3 rounded-lg shadow-xl text-xs max-w-sm flex items-center gap-3">
 
@@ -709,7 +703,6 @@
 
 
 
-    <!-- MAIN 3D SIMULATION ENGINE -->
 
         <script type="module" src="js/main.js"></script>
 
